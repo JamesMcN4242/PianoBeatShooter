@@ -14,6 +14,9 @@ public class CameraController
 
     private Transform m_cameraTransform = null;
 
+    public float3 CameraPosition => m_cameraTransform.position;
+    public float3 CameraForward => m_cameraTransform.forward;
+
     public CameraController()
     {
         m_cameraTransform = Camera.main.transform;
