@@ -26,6 +26,8 @@ public class BaseGameState : FlowStateBase
         float deltaTime = Time.deltaTime;
         m_cameraController.Update(deltaTime);
         UpdateNotes(deltaTime);
+        
+        UpdateInput();
     }
 
     private void UpdateNotes(float deltaTime)
@@ -41,8 +43,20 @@ public class BaseGameState : FlowStateBase
         }
     }
 
+    private void UpdateInput()
+    {
+        for (int i = 0; i < (int) NoteType.COUNT; i++)
+        {
+            if (Input.GetKeyDown(NoteDefs.s_noteKeyMapping[i]))
+            {
+                CreateNoteBlock((NoteType)i);
+            }
+        }
+    }
+    
     private void CreateNoteBlock(NoteType noteType)
     {
+        //TODO: Pooling of the notes if moved past a prototype
         const float blockSpeed = 4.0f;
         
         GameObject noteObj = Object.Instantiate(m_notePrefab, m_cameraController.CameraPosition, Quaternion.identity);

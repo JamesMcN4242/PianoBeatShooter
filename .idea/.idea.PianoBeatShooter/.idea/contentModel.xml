@@ -37,12 +37,22 @@
         </e>
         <e p="PianoBeatShooter" t="Include">
           <e p="PianoBeatShooter.asmdef" t="Include" />
+          <e p="Resources" t="Include">
+            <e p="Audio" t="Include">
+              <e p="_readme_and_license.txt" t="Include" />
+            </e>
+          </e>
           <e p="Scripts" t="Include">
             <e p="Camera" t="Include">
               <e p="CameraController.cs" t="Include" />
             </e>
             <e p="Directors" t="Include">
               <e p="PrototypeDirector.cs" t="Include" />
+            </e>
+            <e p="NoteBlocks" t="Include">
+              <e p="NoteBlock.cs" t="Include" />
+              <e p="NoteCollider.cs" t="Include" />
+              <e p="NoteDefs.cs" t="Include" />
             </e>
             <e p="States" t="Include">
               <e p="BaseGameState.cs" t="Include" />
