@@ -8,6 +8,8 @@ using Unity.Mathematics;
 
 public struct NoteBlock
 {
+    private static readonly GameObject s_smokeVfxPrefab = Resources.Load<GameObject>("Prefabs/SmokeVFX");
+    
     private Transform m_noteTransform;
     private NoteCollider m_colliderNotifier;
     private AudioSource m_audioSource;
@@ -35,8 +37,13 @@ public struct NoteBlock
         AudioClip clip = NoteDefs.s_audioClips[(int)m_noteType];
         m_audioSource.clip = clip;
         m_audioSource.Play();
+
+        GameObject particleObj = Object.Instantiate(s_smokeVfxPrefab, m_noteTransform.position, s_smokeVfxPrefab.transform.rotation);
+        ParticleSystem particleSystem = particleObj.GetComponent<ParticleSystem>();
+        Object.Destroy(particleObj, particleSystem.main.duration);
+        MeshRenderer renderer = m_noteTransform.GetComponent<MeshRenderer>();
+        renderer.enabled = false;
         
-        //TODO: Play destruction vfx to hide destruction
         Object.Destroy(m_noteTransform.gameObject, clip.length);
     }
 
